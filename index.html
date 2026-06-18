@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aayush Gupta — AI Engineer</title>
+<meta name="description" content="AI engineer (6+ yrs) architecting production multi-agent and voice systems — MCP tool-calling, agentic RAG, and LLMOps." />
+<meta property="og:title" content="Aayush Gupta — AI Engineer" />
+<meta property="og:description" content="Production multi-agent & voice systems · MCP tool-calling · agentic RAG · LLMOps." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#F6F7F9" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F7F9;
+    --surface:#FFFFFF;
+    --ink:#14171C;
+    --muted:#5C6470;
+    --faint:#8B93A0;
+    --line:#E3E6EB;
+    --line-strong:#CDD2DA;
+    --accent:#1F4FD6;
+    --accent-ink:#173BA0;
+    --accent-soft:#EAEFFC;
+    --grid:#DDE1E7;
+    --maxw:1080px;
+    --r:12px;
+    --display:"Space Grotesk",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--body);font-size:16.5px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent-soft);}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);font-weight:500;
+  }
+  h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spacing:-.01em;margin:0;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;background:rgba(246,247,249,.82);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px;}
+  .brand{font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:-.01em;}
+  .brand .dot{color:var(--accent);}
+  .nav-links{display:flex;align-items:center;gap:26px;}
+  .nav-links a.link{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--muted);
+    padding:6px 0;border-bottom:1.5px solid transparent;transition:color .18s,border-color .18s;
+  }
+  .nav-links a.link:hover{color:var(--ink);}
+  .nav-links a.link.active{color:var(--ink);border-color:var(--accent);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;
+    letter-spacing:.03em;padding:9px 15px;border-radius:8px;border:1px solid var(--line-strong);
+    background:var(--surface);color:var(--ink);transition:border-color .18s,background .18s,transform .05s;
+    cursor:pointer;
+  }
+  .btn:hover{border-color:var(--accent);color:var(--accent-ink);}
+  .btn:active{transform:translateY(1px);}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .btn.primary:hover{background:var(--accent-ink);color:#fff;}
+  .menu-toggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:8px;
+    width:40px;height:38px;cursor:pointer;align-items:center;justify-content:center;}
+  .menu-toggle span,.menu-toggle span::before,.menu-toggle span::after{
+    content:"";display:block;width:17px;height:1.6px;background:var(--ink);position:relative;transition:.2s;}
+  .menu-toggle span::before{position:absolute;top:-5px;}
+  .menu-toggle span::after{position:absolute;top:5px;}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:84px 0 64px;overflow:hidden;border-bottom:1px solid var(--line);}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background-image:radial-gradient(var(--grid) 1px,transparent 1px);
+    background-size:26px 26px;
+    -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.55),transparent 78%);
+    mask-image:linear-gradient(180deg,rgba(0,0,0,.55),transparent 78%);
+    opacity:.7;
+  }
+  .hero .wrap{position:relative;z-index:1;}
+  .hero h1{font-size:clamp(40px,7vw,68px);margin:14px 0 0;}
+  .hero .lede{
+    max-width:660px;margin:22px 0 0;font-size:clamp(17px,2.4vw,20px);color:var(--muted);line-height:1.55;
+  }
+  .hero .lede b{color:var(--ink);font-weight:600;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:11px;margin-top:30px;}
+  .hero-mark{margin-top:46px;}
+
+  /* ambient signature mark */
+  .sigmark{width:100%;max-width:560px;height:54px;overflow:visible;}
+  .sigmark .sn{fill:var(--surface);stroke:var(--line-strong);}
+  .sigmark .sn.acc{stroke:var(--accent);}
+  .sigmark .sl{stroke:var(--line-strong);stroke-width:1.4;fill:none;}
+  .sigmark text{font-family:var(--mono);font-size:9px;fill:var(--muted);letter-spacing:.04em;}
+  .pulse{fill:var(--accent);}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:74px 0;border-bottom:1px solid var(--line);}
+  .sec-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px;}
+  .sec-title{font-size:clamp(26px,4vw,34px);margin:6px 0 0;}
+  .sec-sub{color:var(--muted);max-width:640px;margin:14px 0 36px;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- WORK CARDS ---------- */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  button.card{
+    text-align:left;font:inherit;color:inherit;cursor:pointer;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+    padding:24px 24px 20px;transition:border-color .2s,box-shadow .2s,transform .2s;
+    display:flex;flex-direction:column;gap:12px;
+  }
+  button.card:hover{border-color:var(--accent);box-shadow:0 8px 30px -18px rgba(31,79,214,.5);transform:translateY(-2px);}
+  .card .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--faint);text-transform:uppercase;}
+  .card h3{font-size:21px;}
+  .card p{margin:0;color:var(--muted);font-size:15px;line-height:1.5;}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:6px;}
+  .tag{font-family:var(--mono);font-size:11px;color:var(--accent-ink);background:var(--accent-soft);
+    padding:4px 9px;border-radius:6px;letter-spacing:.02em;}
+  .card .open{font-family:var(--mono);font-size:12.5px;color:var(--accent);margin-top:4px;}
+  .card .open .ar{transition:transform .2s;display:inline-block;}
+  button.card:hover .open .ar{transform:translateX(4px);}
+
+  /* ---------- APPROACH ---------- */
+  .approach{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;}
+  .skillgroup{padding:22px 0;border-top:1px solid var(--line);}
+  .skillgroup h3{font-size:16px;font-family:var(--mono);font-weight:600;letter-spacing:.02em;color:var(--ink);margin-bottom:14px;text-transform:uppercase;font-size:12.5px;letter-spacing:.12em;color:var(--accent);}
+  .skillgroup ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .skillgroup li{font-size:15px;color:var(--muted);line-height:1.45;}
+  .skillgroup li b{font-family:var(--mono);font-size:13.5px;color:var(--ink);font-weight:500;}
+
+  /* ---------- EXPERIENCE ---------- */
+  .xp{position:relative;}
+  .xp-item{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:26px 0;border-top:1px solid var(--line);}
+  .xp-item:first-child{border-top:none;}
+  .xp-when{font-family:var(--mono);font-size:12.5px;color:var(--faint);letter-spacing:.02em;}
+  .xp-role{font-family:var(--display);font-weight:600;font-size:18px;margin-bottom:3px;}
+  .xp-co{color:var(--accent-ink);}
+  .xp-desc{color:var(--muted);font-size:15px;margin-top:8px;line-height:1.5;}
+  .xp-projects{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:13px;}
+  .xp-projects > li{font-size:14.5px;color:var(--muted);line-height:1.5;padding-left:16px;position:relative;}
+  .xp-projects > li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:1px;background:var(--accent);}
+  .xp-projects > li b{color:var(--ink);font-weight:600;font-family:var(--display);font-size:15px;}
+  .xp-steps{list-style:none;margin:8px 0 2px;padding:0;display:flex;flex-direction:column;gap:5px;}
+  .xp-steps li{font-size:13.5px;color:var(--muted);line-height:1.45;padding-left:17px;position:relative;}
+  .xp-steps li::before{content:"\203A";position:absolute;left:3px;top:-1px;color:var(--accent);font-family:var(--mono);font-weight:600;}
+  .xp-tech{margin-top:15px;display:flex;flex-wrap:wrap;gap:6px;}
+  .xp-tech .t{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--surface);
+    border:1px solid var(--line);padding:3px 8px;border-radius:5px;letter-spacing:.01em;}
+  .edu{margin-top:30px;font-family:var(--mono);font-size:13px;color:var(--faint);padding-top:18px;border-top:1px dashed var(--line-strong);}
+
+  /* ---------- CONTACT ---------- */
+  .contact .sec-title{font-size:clamp(28px,5vw,44px);max-width:560px;}
+  .contact-links{display:flex;flex-wrap:wrap;gap:11px;margin-top:30px;}
+  .open-to{margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--muted);}
+  .open-to .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:middle;}
+
+  footer{padding:34px 0;color:var(--faint);font-family:var(--mono);font-size:12px;}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  /* ---------- MODAL ---------- */
+  .modal-backdrop{
+    position:fixed;inset:0;z-index:100;background:rgba(20,23,28,.45);
+    backdrop-filter:blur(3px);display:none;align-items:flex-start;justify-content:center;
+    padding:40px 18px;overflow-y:auto;
+  }
+  .modal-backdrop.show{display:flex;}
+  .modal{
+    background:var(--bg);border:1px solid var(--line-strong);border-radius:16px;
+    max-width:920px;width:100%;margin:auto;box-shadow:0 30px 80px -30px rgba(20,23,28,.6);
+    animation:pop .26s ease;
+  }
+  @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.99);}to{opacity:1;transform:none;}}
+  .modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+    padding:26px 28px 18px;border-bottom:1px solid var(--line);}
+  .modal-head .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--faint);text-transform:uppercase;}
+  .modal-head h2{font-size:26px;margin-top:8px;}
+  .modal-close{background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;
+    width:38px;height:38px;flex:none;cursor:pointer;font-size:18px;color:var(--muted);line-height:1;}
+  .modal-close:hover{border-color:var(--accent);color:var(--accent-ink);}
+  .modal-body{padding:24px 28px 30px;}
+  .mb-grid{display:grid;grid-template-columns:1fr;gap:22px;}
+  .field{}
+  .field .flabel{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+  .field p{margin:0;color:var(--muted);font-size:15px;line-height:1.55;}
+  .field ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .field li{color:var(--muted);font-size:15px;line-height:1.5;padding-left:18px;position:relative;}
+  .field li::before{content:"→";position:absolute;left:0;color:var(--accent);font-family:var(--mono);}
+
+  /* ---------- DIAGRAM ---------- */
+  .diagram-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;}
+  .dgm-canvas{position:relative;
+    background-image:radial-gradient(var(--grid) 1px,transparent 1px);background-size:20px 20px;
+    overflow-x:auto;padding:8px 0;}
+  .dgm-hint{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.04em;padding:10px 16px 0;}
+  svg.dgm{display:block;width:100%;min-width:660px;height:auto;}
+  .dgm-node rect{fill:var(--surface);stroke:var(--line-strong);stroke-width:1.4;transition:fill .18s,stroke .18s;cursor:pointer;}
+  .dgm-node .nlabel{font-family:var(--mono);font-size:13px;font-weight:600;fill:var(--ink);pointer-events:none;}
+  .dgm-node .nsub{font-family:var(--mono);font-size:10px;fill:var(--faint);pointer-events:none;}
+  .dgm-node{opacity:0;transition:opacity .4s ease;outline:none;}
+  .dgm-node.shown{opacity:1;}
+  .dgm-node:hover rect{stroke:var(--accent);}
+  .dgm-node:focus-visible rect{stroke:var(--accent);stroke-width:2;}
+  .dgm-node.active rect{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2;}
+  .dgm-edge{opacity:0;transition:opacity .5s ease;}
+  .dgm-edge.shown{opacity:1;}
+  .dgm-edge .eline{stroke:var(--line-strong);stroke-width:1.6;fill:none;}
+  .dgm-edge .elabel{font-family:var(--mono);font-size:9.5px;fill:var(--faint);}
+  .dgm-detail{padding:16px 18px;border-top:1px solid var(--line);background:var(--bg);min-height:104px;}
+  .dgm-detail .dtitle{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent-ink);margin-bottom:4px;}
+  .dgm-detail .dtech{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.04em;margin-bottom:8px;}
+  .dgm-detail .ddesc{font-size:14.5px;color:var(--ink);margin:0 0 8px;line-height:1.5;}
+  .dgm-detail .ddec{font-size:13.5px;color:var(--muted);margin:0;line-height:1.5;}
+  .dgm-detail .ddec b{color:var(--ink);font-weight:500;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .cards{grid-template-columns:1fr;}
+    .approach{grid-template-columns:1fr;gap:0;}
+    .xp-item{grid-template-columns:1fr;gap:6px;}
+    .xp-when{order:2;}
+  }
+  @media (max-width:720px){
+    .nav-links{position:absolute;top:62px;right:14px;left:14px;flex-direction:column;align-items:stretch;
+      gap:4px;background:var(--surface);border:1px solid var(--line-strong);border-radius:12px;
+      padding:12px;display:none;box-shadow:0 20px 50px -24px rgba(20,23,28,.5);}
+    .nav-links.open{display:flex;}
+    .nav-links a.link{padding:9px 6px;border-bottom:none;border-left:2px solid transparent;padding-left:10px;}
+    .nav-links a.link.active{border-color:var(--accent);}
+    .nav-links .btn{justify-content:center;margin-top:6px;}
+    .menu-toggle{display:flex;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto !important;}
+    .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+    .dgm-node,.dgm-edge{opacity:1 !important;transition:none !important;}
+    .modal{animation:none !important;}
+    .pulse-anim{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">Aayush Gupta<span class="dot">.</span></a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuBtn"><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#work" class="link">Work</a>
+      <a href="#approach" class="link">Approach</a>
+      <a href="#experience" class="link">Experience</a>
+      <a href="#contact" class="link">Contact</a>
+      <a href="Aayush_Gupta_Resume.pdf" class="btn primary" target="_blank" rel="noopener">Résumé</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <p class="eyebrow">AI Engineer &nbsp;·&nbsp; 6+ Years &nbsp;·&nbsp; Delhi NCR, India</p>
+      <h1>Aayush Gupta</h1>
+      <p class="lede">
+        Architecting <b>production multi-agent and voice systems</b> — MCP-orchestrated tool-calling,
+        agentic RAG over enterprise-scale schemas, and the LLMOps to keep them reliable.
+        Built on years shipping ML, NLP, and computer-vision systems in production.
+      </p>
+      <div class="cta-row">
+        <a href="#work" class="btn primary">View work →</a>
+        <a href="https://github.com/iaayushgupta" class="btn" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/aayush-gupta-925442190" class="btn" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://aayush-gupta0211.medium.com/" class="btn" target="_blank" rel="noopener">Writing</a>
+        <a href="mailto:aayush.gupta0211@gmail.com" class="btn">Email</a>
+      </div>
+      <div class="hero-mark">
+        <svg class="sigmark" viewBox="0 0 560 54" aria-hidden="true">
+          <line class="sl" x1="60" y1="27" x2="160" y2="27"/>
+          <line class="sl" x1="220" y1="27" x2="320" y2="27"/>
+          <line class="sl" x1="380" y1="27" x2="480" y2="27"/>
+          <rect class="sn" x="14" y="13" width="46" height="28" rx="7"/>
+          <rect class="sn acc" x="160" y="13" width="60" height="28" rx="7"/>
+          <rect class="sn" x="320" y="13" width="60" height="28" rx="7"/>
+          <rect class="sn" x="480" y="13" width="66" height="28" rx="7"/>
+          <text x="37" y="30" text-anchor="middle">in</text>
+          <text x="190" y="30" text-anchor="middle">orchestrate</text>
+          <text x="350" y="30" text-anchor="middle">tools</text>
+          <text x="513" y="30" text-anchor="middle">evaluate</text>
+          <circle class="pulse pulse-anim" cx="60" cy="27" r="3">
+            <animate attributeName="cx" values="60;160;320;480" dur="3.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;1;1;0" dur="3.4s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap reveal">
+      <div class="sec-head"><span class="sec-label">Selected work</span></div>
+      <h2 class="sec-title">Production systems, end to end</h2>
+      <p class="sec-sub">Systems I've architected and shipped, end to end. Open any one for the case study and an
+        interactive architecture diagram — click the components to see how each part works and why it's built that way.</p>
+      <div class="cards" id="cards"></div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <div class="wrap reveal">
+      <div class="sec-head"><span class="sec-label">How I build</span></div>
+      <h2 class="sec-title">The stack, anchored to use</h2>
+      <p class="sec-sub">Not a tag cloud — each tool tied to what I actually use it for in production.</p>
+      <div class="approach">
+        <div>
+          <div class="skillgroup">
+            <h3>Orchestration &amp; agents</h3>
+            <ul>
+              <li><b>LangGraph</b> — multi-agent tool-calling loops in production</li>
+              <li><b>MCP</b> — connecting agents to domain-specific tool servers</li>
+              <li><b>Claude · GPT · Gemini</b> — tool-calling &amp; structured output</li>
+            </ul>
+          </div>
+          <div class="skillgroup">
+            <h3>RAG &amp; retrieval</h3>
+            <ul>
+              <li><b>Pinecone · FAISS</b> — semantic retrieval over metadata</li>
+              <li><b>Hybrid search · bge-m3</b> — embeddings &amp; reranking</li>
+              <li><b>NL-to-SQL</b> — grounded generation over large schemas</li>
+            </ul>
+          </div>
+          <div class="skillgroup">
+            <h3>LLMOps &amp; evaluation</h3>
+            <ul>
+              <li><b>LLM-as-judge</b> — automated response-quality scoring</li>
+              <li><b>LangSmith · Langfuse</b> — tracing &amp; prompt versioning</li>
+              <li><b>Logging · alerting</b> — observability &amp; drift detection</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="skillgroup">
+            <h3>ML &amp; deep learning</h3>
+            <ul>
+              <li><b>PyTorch · Transformers · BERT</b> — NLP &amp; fine-tuning</li>
+              <li><b>Computer vision</b> — image classification pipelines</li>
+              <li><b>Classical ML</b> — regression, clustering, forecasting at scale</li>
+            </ul>
+          </div>
+          <div class="skillgroup">
+            <h3>Backend &amp; serving</h3>
+            <ul>
+              <li><b>FastAPI · WebSocket</b> — streaming, concurrent services</li>
+              <li><b>Docker</b> — containerized ML microservices</li>
+              <li><b>PostgreSQL · Redis · Neo4j</b> — data &amp; state</li>
+            </ul>
+          </div>
+          <div class="skillgroup">
+            <h3>Cloud &amp; CI/CD</h3>
+            <ul>
+              <li><b>AWS Bedrock · Azure OpenAI/ML · GCP</b> — model hosting</li>
+              <li><b>GitHub Actions · GitLab CI · Jenkins</b> — pipelines</li>
+              <li><b>Terraform</b> — infrastructure as code</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap reveal">
+      <div class="sec-head"><span class="sec-label">Experience</span></div>
+      <h2 class="sec-title">Six years, four companies</h2>
+      <p class="sec-sub">From data &amp; software engineering to applied NLP, fintech risk ML, and now
+        production GenAI — the arc behind the agent work above.</p>
+      <div class="xp">
+        <!-- QUARA -->
+        <div class="xp-item">
+          <div class="xp-when">Jan 2024 — Present</div>
+          <div>
+            <div class="xp-role"><span>AI Engineer</span> · <span class="xp-co">Quara Digital</span></div>
+            <div class="xp-desc">Building the production GenAI platform — the voice assistant, agentic RAG analytics,
+              and LLM-as-judge evaluation detailed in Selected Work above — plus the classical-ML systems behind the business:</div>
+            <ul class="xp-projects">
+              <li><b>Property Valuation &amp; Price Forecasting</b> — Random Forest regression over geospatial + structural
+                + text features (city, district, latitude/longitude, property type, area, and free-text descriptions
+                embedded with BERT) for real-time appraisals; Prophet price forecasting trained per city and district;
+                drift detection with automated retraining and A/B-tested rollouts.</li>
+              <li><b>Property Image Classification</b> — room-type classification with an EfficientNet CNN over large image
+                volumes, multithreaded for throughput at low inference latency.</li>
+              <li><b>Buyer Segmentation</b> — unsupervised clustering of high-value leads to sharpen targeting.</li>
+            </ul>
+            <div class="xp-tech">
+              <span class="t">Python</span><span class="t">LangGraph</span><span class="t">MCP</span><span class="t">Pinecone</span><span class="t">FastAPI</span><span class="t">Random Forest</span><span class="t">Prophet</span><span class="t">BERT embeddings</span><span class="t">PyTorch · EfficientNet</span><span class="t">Azure ML</span><span class="t">AWS Bedrock</span><span class="t">Azure OpenAI</span><span class="t">Terraform</span>
+            </div>
+          </div>
+        </div>
+        <!-- RAPIPAY -->
+        <div class="xp-item">
+          <div class="xp-when">Mar 2023 — Dec 2023</div>
+          <div>
+            <div class="xp-role"><span>Lead Data Scientist</span> · <span class="xp-co">RapiPay Fintech</span></div>
+            <div class="xp-desc">Built the risk &amp; fraud scoring engine for lending — a multi-stage NLP and scoring pipeline:</div>
+            <ul class="xp-projects">
+              <li><b>SMS + Credit-Bureau Risk Scoring</b> — a weighted composite risk model fusing transaction-message
+                analysis with credit-bureau data:
+                <ul class="xp-steps">
+                  <li>classify SMS into personal vs. official with Word2Vec-based text classification, then split official into debit / credit / loan / legal / other</li>
+                  <li>derive net monthly debit and credit from transaction messages</li>
+                  <li>in parallel, parse credit-bureau (CIBIL) reports for active loans, loan count, and defaults</li>
+                  <li>fuse the signals into a weighted composite score → bucket applicants into low / moderate / high risk</li>
+                </ul>
+              </li>
+              <li><b>Model Lifecycle Management</b> — exploration through production monitoring with real-time high-risk
+                alerts; memory-efficient feature engineering for large financial datasets.</li>
+            </ul>
+            <div class="xp-tech">
+              <span class="t">Python</span><span class="t">Word2Vec</span><span class="t">text classification</span><span class="t">credit-report parsing</span><span class="t">weighted composite scoring</span><span class="t">FastAPI</span><span class="t">AWS · auto-scaling</span>
+            </div>
+          </div>
+        </div>
+        <!-- TIGER -->
+        <div class="xp-item">
+          <div class="xp-when">Jan 2022 — Mar 2023</div>
+          <div>
+            <div class="xp-role"><span>Data Scientist</span> · <span class="xp-co">Tiger Analytics</span></div>
+            <div class="xp-desc">Applied NLP / transformer modeling for contact-center and review analytics.</div>
+            <ul class="xp-projects">
+              <li><b>Call Quality &amp; Intent Identification</b> — decomposed into four transformer-based sub-problems:
+                <ul class="xp-steps">
+                  <li>authentication — whether the agent correctly authenticated the customer</li>
+                  <li>phase-wise sentiment — customer sentiment across early, middle, and late call phases</li>
+                  <li>transfer intent — intent and sub-intent at the point of escalation to higher authority</li>
+                  <li>call intent — the core reason for the call (under- vs. over-authentication)</li>
+                </ul>
+                Built on fine-tuned BERT (Hugging Face); stakeholder dashboards in Streamlit.</li>
+              <li><b>Aspect-Based Sentiment Analysis</b> — PyABSA for aspect + polarity and spaCy NER for aspect +
+                aspect-category, merged into one view; aspect-category bucketing collapses a near-unbounded aspect space
+                into manageable groups; run at scale on Azure Databricks.</li>
+            </ul>
+            <div class="xp-tech">
+              <span class="t">Python</span><span class="t">Hugging Face · BERT</span><span class="t">PyABSA</span><span class="t">spaCy NER</span><span class="t">PyTorch</span><span class="t">Azure Databricks</span><span class="t">Streamlit</span>
+            </div>
+          </div>
+        </div>
+        <!-- MINDTREE -->
+        <div class="xp-item">
+          <div class="xp-when">Sep 2019 — Dec 2021</div>
+          <div>
+            <div class="xp-role"><span>Software Engineer &amp; Data Scientist</span> · <span class="xp-co">Mindtree</span></div>
+            <div class="xp-desc">Foundations in data &amp; software engineering.</div>
+            <ul class="xp-projects">
+              <li><b>Pharma Market Intelligence</b> — automated Python web-scraping pipelines aggregating 50+ sources into a
+                structured foundation for pharmaceutical investment decisions.</li>
+              <li><b>5G Data Optimization</b> — optimized 5G data-streaming protocols for Tier-1 telecom; refactored legacy
+                codebases with OOP for maintainability and scale.</li>
+            </ul>
+            <div class="xp-tech">
+              <span class="t">Python</span><span class="t">web scraping / ETL</span><span class="t">OOP</span><span class="t">data streaming</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="edu">B.Tech, Electronics &amp; Telecommunication — GGSIPU, 2019 &nbsp;·&nbsp; Applied Machine Learning Course</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap reveal">
+      <span class="sec-label">Contact</span>
+      <h2 class="sec-title" style="margin-top:10px;">Let's talk about building reliable AI systems.</h2>
+      <div class="contact-links">
+        <a href="mailto:aayush.gupta0211@gmail.com" class="btn primary">aayush.gupta0211@gmail.com</a>
+        <a href="tel:+919810645972" class="btn">+91 98106 45972</a>
+        <a href="https://www.linkedin.com/in/aayush-gupta-925442190" class="btn" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/iaayushgupta" class="btn" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://aayush-gupta0211.medium.com/" class="btn" target="_blank" rel="noopener">Medium</a>
+        <a href="Aayush_Gupta_Resume.pdf" class="btn" target="_blank" rel="noopener">Résumé (PDF)</a>
+      </div>
+      <p class="open-to"><span class="dot"></span>Open to senior AI / GenAI engineer roles · remote or Delhi NCR</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Aayush Gupta — AI Engineer</span>
+    <span>Designed &amp; built · 2026</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="backdrop" role="dialog" aria-modal="true" aria-labelledby="m-title">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <div>
+        <div class="kicker" id="m-kicker"></div>
+        <h2 id="m-title"></h2>
+      </div>
+      <button class="modal-close" id="m-close" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-grid">
+        <div class="field"><div class="flabel">Architecture — click a component</div>
+          <div class="diagram-wrap">
+            <div class="dgm-hint" id="dgm-hint"></div>
+            <div class="dgm-canvas" id="dgm-canvas"></div>
+            <div class="dgm-detail" id="dgm-detail"></div>
+          </div>
+        </div>
+        <div class="field"><div class="flabel">Problem</div><p id="m-problem"></p></div>
+        <div class="field"><div class="flabel">My role</div><p id="m-role"></p></div>
+        <div class="field"><div class="flabel">Key decisions &amp; tradeoffs</div><ul id="m-decisions"></ul></div>
+        <div class="field"><div class="flabel">Outcome</div><p id="m-outcome"></p></div>
+        <div class="field"><div class="flabel">Stack</div><div class="tags" id="m-tags"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(reduceMotion){document.querySelectorAll(".sigmark animate").forEach(a=>a.remove());}
+
+/* ---- reusable layouts ---- */
+/* linear pipeline + side node + feedback (flagships), viewBox 0 0 820 300 */
+const STD_NODES = [
+  {id:"a", x:16,  y:54, w:176, h:64},
+  {id:"b", x:220, y:54, w:176, h:64},
+  {id:"c", x:424, y:54, w:176, h:64},
+  {id:"d", x:628, y:54, w:176, h:64},
+  {id:"e", x:424, y:196,w:176, h:64}
+];
+const STD_EDGES = [
+  {kind:"line", from:{n:"a",s:"r"}, to:{n:"b",s:"l"}},
+  {kind:"line", from:{n:"b",s:"r"}, to:{n:"c",s:"l"}},
+  {kind:"line", from:{n:"c",s:"r"}, to:{n:"d",s:"l"}},
+  {kind:"line", from:{n:"c",s:"b"}, to:{n:"e",s:"t"}},
+  {kind:"path", d:"M424 228 C 360 228 308 192 308 122", dashed:true, label:"feedback", lx:300, ly:176}
+];
+/* diamond: input -> two parallel -> merge -> tail, viewBox 0 0 820 300 */
+const DIA_NODES = [
+  {id:"n1", x:16,  y:121, w:168, h:58},
+  {id:"n2", x:228, y:42,  w:168, h:58},
+  {id:"n3", x:228, y:200, w:168, h:58},
+  {id:"n4", x:452, y:121, w:164, h:58},
+  {id:"n5", x:640, y:121, w:164, h:58}
+];
+const DIA_EDGES = [
+  {kind:"line", from:{n:"n1",s:"r"}, to:{n:"n2",s:"l"}},
+  {kind:"line", from:{n:"n1",s:"r"}, to:{n:"n3",s:"l"}},
+  {kind:"line", from:{n:"n2",s:"r"}, to:{n:"n4",s:"l"}},
+  {kind:"line", from:{n:"n3",s:"r"}, to:{n:"n4",s:"l"}},
+  {kind:"line", from:{n:"n4",s:"r"}, to:{n:"n5",s:"l"}}
+];
+/* fan: input -> four parallel -> aggregate, viewBox 0 0 820 330 */
+const FAN_NODES = [
+  {id:"in", x:16,  y:140, w:150, h:50},
+  {id:"f1", x:326, y:28,  w:164, h:46},
+  {id:"f2", x:326, y:98,  w:164, h:46},
+  {id:"f3", x:326, y:168, w:164, h:46},
+  {id:"f4", x:326, y:238, w:164, h:46},
+  {id:"out",x:640, y:140, w:164, h:50}
+];
+const FAN_EDGES = [
+  {kind:"line", from:{n:"in",s:"r"}, to:{n:"f1",s:"l"}},
+  {kind:"line", from:{n:"in",s:"r"}, to:{n:"f2",s:"l"}},
+  {kind:"line", from:{n:"in",s:"r"}, to:{n:"f3",s:"l"}},
+  {kind:"line", from:{n:"in",s:"r"}, to:{n:"f4",s:"l"}},
+  {kind:"line", from:{n:"f1",s:"r"}, to:{n:"out",s:"l"}},
+  {kind:"line", from:{n:"f2",s:"r"}, to:{n:"out",s:"l"}},
+  {kind:"line", from:{n:"f3",s:"r"}, to:{n:"out",s:"l"}},
+  {kind:"line", from:{n:"f4",s:"r"}, to:{n:"out",s:"l"}}
+];
+
+const PROJECTS = {
+  voice:{
+    nodes:STD_NODES, edges:STD_EDGES, viewBox:"0 0 820 300",
+    kicker:"Conversational AI",
+    title:"Multilingual Voice AI Assistant",
+    short:"Real-time Hinglish/English voice → completed domain workflows via a multi-agent tool-calling loop.",
+    tags:["LangGraph","MCP","WebSocket STT/TTS","Claude tool-calling"],
+    problem:"Users wanted to finish multi-step domain tasks by voice, in mixed Hindi and English, fast enough to feel like a conversation and reliable enough to trust with real actions.",
+    role:"Architected the orchestration layer and the tool-calling design across domain servers, plus the evaluation and observability loop.",
+    decisions:[
+      "Chose a modular tool-calling loop over one monolithic prompt — each domain stays testable and independently extensible.",
+      "Compressed context per turn to cut token cost, traded against a small added pre-processing step.",
+      "Wired an LLM-as-judge eval loop in from the start so quality regressions surface automatically, not via manual QA."
+    ],
+    outcome:"Real-time, conversational voice responses and substantially reduced manual handling for the workflows it covers.",
+    labels:{
+      a:["Voice I/O","STT · TTS · stream"], b:["Gateway",""], c:["Orchestration","tool-calling loop"],
+      d:["Tool Servers","domain actions"], e:["Eval + Observability",""]
+    },
+    detail:{
+      a:["Voice I/O","WebSocket STT/TTS","Real-time speech in and out over a streaming connection.","Streaming both directions keeps latency low enough to feel conversational."],
+      b:["Gateway","entry + routing","A single entry point that authenticates each turn and routes it into orchestration.","Isolating transport from agent logic keeps each layer simple."],
+      c:["Orchestration","LangGraph · Claude","Runs the tool-calling loop: interpret intent, choose tools, execute, respond.","A modular loop beats a mega-prompt — testable and extensible per domain."],
+      d:["Tool Servers","MCP","Domain-specific servers expose the concrete actions the agent can take.","Splitting tools by domain keeps each surface small and independently owned."],
+      e:["Eval + Observability","LLM-as-judge · tracing","Scores responses, logs every tool call, and feeds quality signals back into prompts.","Automated evaluation catches regressions instead of relying on manual QA."]
+    }
+  },
+  rag:{
+    nodes:STD_NODES, edges:STD_EDGES, viewBox:"0 0 820 300",
+    kicker:"Agentic RAG",
+    title:"LLM Analytics Dashboard",
+    short:"Natural-language questions → optimized SQL over an enterprise-scale schema, with semantic retrieval and a feedback loop.",
+    tags:["Pinecone","NL-to-SQL","Agentic RAG","FastAPI"],
+    problem:"Non-technical users needed answers from a large enterprise database without writing SQL or waiting on an analyst — across a schema far too big to hand a model wholesale.",
+    role:"Built the retrieval-grounded query pipeline: semantic schema retrieval, NL-to-SQL generation, result synthesis, and the feedback loop.",
+    decisions:[
+      "Retrieve the relevant tables semantically before generating — grounding beats guessing across a >1k-table schema.",
+      "Return an explanation plus a chart, not just rows, so the output is usable by non-analysts.",
+      "Close a feedback loop on repeated query patterns to keep improving accuracy on the questions people actually ask."
+    ],
+    outcome:"Lets non-technical users self-serve analytics that previously required an analyst in the loop.",
+    labels:{
+      a:["NL Question","plain language"], b:["Semantic Retrieval","schema + catalog"], c:["Query Generation","NL → SQL"],
+      d:["Synthesis + Viz","insights + charts"], e:["Feedback Loop",""]
+    },
+    detail:{
+      a:["NL Question","chat input","A user asks a question in plain language.","Meeting users in natural language removes the SQL barrier to data."],
+      b:["Semantic Retrieval","Pinecone · embeddings","Vector search over schema and catalog metadata surfaces the relevant tables.","Retrieving the right tables first keeps generation grounded on a huge schema."],
+      c:["Query Generation","NL-to-SQL","Generates optimized SQL against the retrieved context.","Grounding on retrieved schema is what makes queries correct at scale."],
+      d:["Synthesis + Viz","FastAPI · charts","Runs the query and returns readable insights plus interactive charts.","Explanation + visual, not raw rows, is what makes it usable."],
+      e:["Feedback Loop","prompt refinement","Refines prompts from user feedback on recurring query patterns.","Closing the loop improves accuracy on real, repeated questions."]
+    }
+  },
+  eval:{
+    nodes:STD_NODES, edges:STD_EDGES, viewBox:"0 0 820 300",
+    kicker:"LLMOps",
+    title:"LLM-as-Judge Evaluation Framework",
+    short:"Automated response-quality scoring wired into a continuous prompt-optimization loop, with observability and alerting.",
+    tags:["LLM-as-judge","LangSmith/Langfuse","Observability","Alerting"],
+    problem:"Agent quality drifts silently in production. Manual QA doesn't scale, and you find out about regressions from users — too late.",
+    role:"Designed the evaluator-LLM scoring, the structured logging and alerting, and the loop that turns scores into prompt improvements.",
+    decisions:[
+      "Used a dedicated evaluator model scoring accuracy, tone, completeness, and domain compliance — a consistent, automatable signal.",
+      "Evaluated real production traffic, not just held-out test sets, so scores reflect actual quality.",
+      "Wired scores back into prompt iteration so evaluation drives improvement, not just a dashboard."
+    ],
+    outcome:"Automated quality-regression detection with far less reliance on manual QA.",
+    labels:{
+      a:["Agent Response","to evaluate"], b:["Evaluator LLM","scores quality"], c:["Scoring + Logging","structured"],
+      d:["Alerting","on degradation"], e:["Prompt Optimization",""]
+    },
+    detail:{
+      a:["Agent Response","capture","Each production response is captured for evaluation.","Evaluating real traffic reflects actual quality, not just test sets."],
+      b:["Evaluator LLM","LLM-as-judge","A dedicated model scores accuracy, tone, completeness, and domain compliance.","A separate judge gives a consistent, automatable quality signal."],
+      c:["Scoring + Logging","structured logs · tracing","Scores and tool invocations are logged with structure for analysis.","Structured logs make regressions debuggable and trends visible."],
+      d:["Alerting","real-time","Alerts fire the moment scores degrade.","Catching drift as it happens beats hearing it from users."],
+      e:["Prompt Optimization","feedback","Score signals feed back into prompt iteration.","The loop turns evaluation into continuous improvement."]
+    }
+  },
+  prop:{
+    nodes:DIA_NODES, edges:DIA_EDGES, viewBox:"0 0 820 300",
+    kicker:"Classical ML · Real Estate",
+    title:"Property Valuation & Forecasting",
+    short:"Geospatial + text features → Random Forest valuation and per-region Prophet forecasting, served in real time.",
+    tags:["Random Forest","Prophet","BERT","FastAPI","Azure ML"],
+    problem:"The business needed instant, reliable property appraisals and price forecasts across many cities — from messy, mixed features including free-text listings.",
+    role:"Built the feature pipeline, the valuation and forecasting models, and the serving + drift-retraining loop.",
+    decisions:[
+      "Embedded free-text descriptions with BERT so listing language became usable model signal alongside tabular features.",
+      "Trained Prophet per city and district — local markets move differently, and per-region models capture that.",
+      "Wired drift detection + automated retraining with A/B rollouts so accuracy holds as the market shifts."
+    ],
+    outcome:"Real-time appraisals and forecasts that cut manual valuation effort substantially.",
+    labels:{
+      n1:["Property Features","geo + text"], n2:["Random Forest","valuation"], n3:["Prophet","per city/district"],
+      n4:["Serving API","FastAPI"], n5:["Drift + Retrain","Azure ML"]
+    },
+    detail:{
+      n1:["Property Features","city · district · lat/long · type · area · text","Structured geospatial and property attributes plus free-text descriptions embedded with BERT.","Combining geospatial signal with text embeddings captures what plain tabular features miss."],
+      n2:["Random Forest","regression","Predicts a point valuation from the full feature set.","Random Forest handles mixed geospatial + embedded-text features robustly without heavy tuning."],
+      n3:["Prophet","time-series forecasting","Forecasts price trajectories, with a separate model trained per city and district.","Per-region models capture local market dynamics a single global model would blur."],
+      n4:["Serving API","FastAPI","Serves real-time appraisals and forecasts into product flows.","Real-time serving makes valuations usable in-product, not just as batch reports."],
+      n5:["Drift + Retrain","Azure ML · A/B","Monitors drift and triggers automated retraining with A/B-tested rollouts.","Automated retraining keeps appraisals accurate as the market moves."]
+    }
+  },
+  risk:{
+    nodes:DIA_NODES, edges:DIA_EDGES, viewBox:"0 0 820 300",
+    kicker:"Fintech · Risk ML",
+    title:"SMS + Credit-Bureau Risk Scoring",
+    short:"Two signals — transaction-SMS analysis and credit-bureau data — fused into a weighted risk score and tiers.",
+    tags:["Word2Vec","NLP","CIBIL parsing","Risk scoring","FastAPI"],
+    problem:"Lending needed to judge applicant risk fast, including thin-file applicants, using behavioral signal beyond the formal credit report.",
+    role:"Designed the SMS NLP pipeline, the bureau parsing, the scoring fusion, and the production serving.",
+    decisions:[
+      "Used Word2Vec-based classification to turn noisy SMS into structured debit / credit / loan signals.",
+      "Ran SMS and bureau analysis as parallel branches, fused at a single weighted score.",
+      "Kept the composite score rule-based and weighted so every lending decision stays auditable."
+    ],
+    outcome:"A risk score and tiering that flagged fraud and likely defaulters while cutting manual review.",
+    labels:{
+      n1:["SMS Messages","raw inbox"], n2:["Word2Vec","transactions"], n3:["Credit Bureau","CIBIL parse"],
+      n4:["Composite Score","weighted"], n5:["Risk Tiers","low/mod/high"]
+    },
+    detail:{
+      n1:["SMS Messages","unstructured text","An applicant's transactional and personal SMS stream.","SMS captures real cash-flow behavior that application forms don't."],
+      n2:["Word2Vec Classifier","Word2Vec · text classification","Classifies SMS into personal vs. official, splits official into debit / credit / loan / legal / other, and derives net monthly debit and credit.","Word2Vec embeddings let a lightweight classifier separate noisy message types reliably."],
+      n3:["Credit Bureau (CIBIL)","report parsing","Parses the bureau report for active loans, total loan count, and defaults.","Bureau data adds the formal credit history the SMS signal can't see."],
+      n4:["Weighted Composite Score","rule-based fusion","Fuses cash-flow and bureau signals into a single weighted risk score.","A transparent weighted score is auditable — essential for lending."],
+      n5:["Risk Tiers","segmentation","Buckets applicants into low, moderate, and high risk.","Tiering turns a continuous score into an actionable lending decision."]
+    }
+  },
+  callq:{
+    nodes:FAN_NODES, edges:FAN_EDGES, viewBox:"0 0 820 330",
+    kicker:"NLP · Contact Center",
+    title:"Call Quality & Intent Identification",
+    short:"One call, four parallel BERT models — authentication, phase sentiment, transfer intent, and call intent — aggregated for QA.",
+    tags:["BERT","Hugging Face","NLP","Streamlit"],
+    problem:"Manual call-quality auditing didn't scale; the business needed automated, multi-dimensional quality and intent signals on every call.",
+    role:"Decomposed the problem into four sub-models and built the fine-tuned transformers plus the aggregation dashboards.",
+    decisions:[
+      "Split call quality into four focused sub-problems instead of one model — each is simpler, more accurate, and separately useful.",
+      "Measured sentiment per call phase, not once, to locate where a call turns.",
+      "Fine-tuned BERT per task and aggregated into a single stakeholder view in Streamlit."
+    ],
+    outcome:"Automated, multi-dimensional call auditing that replaced slow manual review.",
+    labels:{
+      in:["Call Audio","transcript"], f1:["Authentication",""], f2:["Phase Sentiment",""],
+      f3:["Transfer Intent",""], f4:["Call Intent",""], out:["Quality Dashboard","Streamlit"]
+    },
+    detail:{
+      in:["Call Audio / Transcript","speech input","Each support call, transcribed for analysis.","Working from transcripts lets transformer models reason over the full conversation."],
+      f1:["Authentication","BERT classifier","Checks whether the agent correctly authenticated the customer.","Authentication is a compliance must — automating the check scales QA."],
+      f2:["Phase Sentiment","BERT","Tracks customer sentiment across early, middle, and late call phases.","Phase-level sentiment shows where a call turns, not just an overall score."],
+      f3:["Transfer Intent","BERT","Detects intent and sub-intent at the point of escalation to a higher authority.","Knowing why calls escalate surfaces process gaps."],
+      f4:["Call Intent","BERT","Classifies the core call reason as under- vs. over-authentication.","The core intent ties the other signals back to the business question."],
+      out:["Quality Dashboard","Streamlit","Aggregates all four signals into stakeholder dashboards.","One view turns four models into something the business can act on."]
+    }
+  },
+  absa:{
+    nodes:DIA_NODES, edges:DIA_EDGES, viewBox:"0 0 820 300",
+    kicker:"NLP · Reviews",
+    title:"Aspect-Based Sentiment Analysis",
+    short:"PyABSA for aspect polarity + spaCy NER for aspect category, merged and bucketed across 100k+ monthly reviews.",
+    tags:["PyABSA","spaCy NER","NLP","Azure Databricks"],
+    problem:"Review sentiment was too coarse; the business wanted per-aspect sentiment, but the aspect space was effectively unbounded.",
+    role:"Built the dual-extraction pipeline (PyABSA + spaCy NER), the merge logic, and the aspect-category bucketing, at Databricks scale.",
+    decisions:[
+      "Ran PyABSA for aspect + polarity and spaCy NER for aspect + category, then merged — each tool does what it's best at.",
+      "Introduced aspect-category bucketing to collapse millions of raw aspects into analyzable groups.",
+      "Scaled the pipeline on Azure Databricks to handle the monthly review volume."
+    ],
+    outcome:"Per-aspect sentiment trends the business could actually track, from an otherwise unbounded aspect space.",
+    labels:{
+      n1:["Reviews","100k+/month"], n2:["PyABSA","aspect + polarity"], n3:["spaCy NER","aspect + category"],
+      n4:["Merge","align aspects"], n5:["Aspect Buckets","categories"]
+    },
+    detail:{
+      n1:["Reviews","text at scale","A high monthly volume of customer reviews.","Scale is the real challenge — millions of distinct aspects across reviews."],
+      n2:["PyABSA","aspect-based SA","Extracts each aspect and its sentiment polarity.","PyABSA gives fine-grained polarity per aspect, not a blanket review score."],
+      n3:["spaCy NER","custom NER","Identifies aspects and tags each with an aspect category.","A custom NER maps raw aspects toward higher-level categories."],
+      n4:["Merge","join on aspect","Aligns PyABSA polarity with spaCy NER categories on the shared aspect.","Merging the two yields aspect + polarity + category in one record."],
+      n5:["Aspect-Category Buckets","bucketing","Collapses a near-unbounded aspect space into a manageable set of categories.","Bucketing makes millions of raw aspects analyzable as trends."]
+    }
+  }
+};
+
+/* ---------- build work cards ---------- */
+const cardsEl = document.getElementById("cards");
+Object.keys(PROJECTS).forEach(key=>{
+  const p = PROJECTS[key];
+  const b = document.createElement("button");
+  b.className = "card";
+  b.setAttribute("aria-haspopup","dialog");
+  b.innerHTML =
+    '<span class="kicker">'+p.kicker+'</span>'+
+    '<h3>'+p.title+'</h3>'+
+    '<p>'+p.short+'</p>'+
+    '<div class="tags">'+p.tags.map(t=>'<span class="tag">'+t+'</span>').join('')+'</div>'+
+    '<span class="open">View case study <span class="ar">→</span></span>';
+  b.addEventListener("click",()=>openModal(key,b));
+  cardsEl.appendChild(b);
+});
+
+/* ---------- diagram renderer ---------- */
+const SVGNS = "http://www.w3.org/2000/svg";
+function el(name,attrs){const e=document.createElementNS(SVGNS,name);for(const k in attrs)e.setAttribute(k,attrs[k]);return e;}
+let CUR_NODES = STD_NODES;
+function node(id){return CUR_NODES.find(n=>n.id===id);}
+function anchor(ref){const n=node(ref.n);const cx=n.x+n.w/2, cy=n.y+n.h/2;
+  if(ref.s==="l")return[n.x,cy]; if(ref.s==="r")return[n.x+n.w,cy];
+  if(ref.s==="t")return[cx,n.y]; return[cx,n.y+n.h];}
+
+function renderDiagram(project){
+  const canvas = document.getElementById("dgm-canvas");
+  canvas.innerHTML = "";
+  CUR_NODES = project.nodes;
+  const svg = el("svg",{class:"dgm",viewBox:project.viewBox||"0 0 820 300"});
+  // arrow marker
+  const defs = el("defs",{});
+  const marker = el("marker",{id:"arr",viewBox:"0 0 10 10",refX:"8",refY:"5",markerWidth:"7",markerHeight:"7",orient:"auto-start-reverse"});
+  marker.appendChild(el("path",{d:"M0 0 L10 5 L0 10 z",fill:"#CDD2DA"}));
+  defs.appendChild(marker);
+  svg.appendChild(defs);
+
+  // edges
+  const edgeEls = [];
+  project.edges.forEach(e=>{
+    const g = el("g",{class:"dgm-edge"});
+    if(e.kind==="line"){
+      const [x1,y1]=anchor(e.from), [x2,y2]=anchor(e.to);
+      g.appendChild(el("line",{class:"eline",x1:x1,y1:y1,x2:x2,y2:y2,"marker-end":"url(#arr)"}));
+    } else {
+      const path = el("path",{class:"eline",d:e.d,"marker-end":"url(#arr)"});
+      if(e.dashed) path.setAttribute("stroke-dasharray","5 4");
+      g.appendChild(path);
+      if(e.label){const t=el("text",{class:"elabel",x:e.lx,y:e.ly,"text-anchor":"middle"});t.textContent=e.label;g.appendChild(t);}
+    }
+    svg.appendChild(g); edgeEls.push(g);
+  });
+
+  // nodes
+  const nodeEls = [];
+  project.nodes.forEach(n=>{
+    const lab = project.labels[n.id];
+    const g = el("g",{class:"dgm-node",tabindex:"0",role:"button","aria-label":lab[0],"data-id":n.id});
+    g.appendChild(el("rect",{x:n.x,y:n.y,width:n.w,height:n.h,rx:"10"}));
+    const hasSub = lab[1] && lab[1].length;
+    const ly1 = hasSub ? n.y+n.h/2-4 : n.y+n.h/2+5;
+    const t1 = el("text",{class:"nlabel",x:n.x+n.w/2,y:ly1,"text-anchor":"middle"});
+    t1.textContent = lab[0];
+    g.appendChild(t1);
+    if(hasSub){const t2=el("text",{class:"nsub",x:n.x+n.w/2,y:n.y+n.h/2+11,"text-anchor":"middle"});t2.textContent=lab[1];g.appendChild(t2);}
+    const select=()=>setActive(n.id,project);
+    g.addEventListener("click",select);
+    g.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();select();}});
+    svg.appendChild(g); nodeEls.push(g);
+  });
+
+  canvas.appendChild(svg);
+
+  // reveal animation
+  if(reduceMotion){
+    nodeEls.forEach(g=>g.classList.add("shown"));
+    edgeEls.forEach(g=>g.classList.add("shown"));
+  } else {
+    nodeEls.forEach((g,i)=>setTimeout(()=>g.classList.add("shown"), i*75));
+    setTimeout(()=>edgeEls.forEach(g=>g.classList.add("shown")), nodeEls.length*75+60);
+  }
+  // default selection = first node
+  setActive(project.nodes[0].id,project);
+}
+
+function setActive(id,project){
+  document.querySelectorAll(".dgm-node").forEach(g=>{
+    g.classList.toggle("active", g.getAttribute("data-id")===id);
+  });
+  const d = project.detail[id];
+  document.getElementById("dgm-detail").innerHTML =
+    '<div class="dtitle">'+d[0]+'</div>'+
+    '<div class="dtech">'+d[1]+'</div>'+
+    '<p class="ddesc">'+d[2]+'</p>'+
+    '<p class="ddec"><b>Why</b> &nbsp;'+d[3]+'</p>';
+}
+
+/* ---------- modal ---------- */
+const backdrop = document.getElementById("backdrop");
+let lastFocused = null;
+function openModal(key,trigger){
+  const p = PROJECTS[key];
+  lastFocused = trigger || null;
+  document.getElementById("m-kicker").textContent = p.kicker;
+  document.getElementById("m-title").textContent = p.title;
+  document.getElementById("m-problem").textContent = p.problem;
+  document.getElementById("m-role").textContent = p.role;
+  document.getElementById("m-outcome").textContent = p.outcome;
+  document.getElementById("dgm-hint").textContent = "interactive · click any block";
+  document.getElementById("m-decisions").innerHTML = p.decisions.map(d=>'<li>'+d+'</li>').join('');
+  document.getElementById("m-tags").innerHTML = p.tags.map(t=>'<span class="tag">'+t+'</span>').join('');
+  renderDiagram(p);
+  backdrop.classList.add("show");
+  document.body.style.overflow = "hidden";
+  document.getElementById("m-close").focus();
+}
+function closeModal(){
+  backdrop.classList.remove("show");
+  document.body.style.overflow = "";
+  if(lastFocused) lastFocused.focus();
+}
+document.getElementById("m-close").addEventListener("click",closeModal);
+backdrop.addEventListener("click",e=>{if(e.target===backdrop)closeModal();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&backdrop.classList.contains("show"))closeModal();});
+
+/* ---------- mobile nav ---------- */
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+menuBtn.addEventListener("click",()=>{
+  const open = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", open?"true":"false");
+});
+navLinks.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
+  navLinks.classList.remove("open"); menuBtn.setAttribute("aria-expanded","false");
+}));
+
+/* ---------- scroll spy + reveal ---------- */
+const sections = ["work","approach","experience","contact"];
+const spy = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const id = en.target.id;
+      document.querySelectorAll(".nav-links a.link").forEach(a=>{
+        a.classList.toggle("active", a.getAttribute("href")==="#"+id);
+      });
+    }
+  });
+},{rootMargin:"-45% 0px -50% 0px"});
+sections.forEach(id=>{const s=document.getElementById(id);if(s)spy.observe(s);});
+
+const revealObs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");revealObs.unobserve(en.target);}});
+},{rootMargin:"0px 0px -10% 0px"});
+document.querySelectorAll(".reveal").forEach(r=>revealObs.observe(r));
+</script>
+</body>
+</html>
